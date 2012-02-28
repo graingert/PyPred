@@ -1,0 +1,7 @@
+{
+	if ( $1 == "delim" ) {
+		print "\n"
+	} else {
+		printf "%s", $2
+	}
+}
