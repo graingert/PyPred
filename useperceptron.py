@@ -32,6 +32,11 @@ from StringIO import StringIO
 import math
 import matplotlib.pyplot as plt
 
+
+from pybrain.tools.shortcuts import buildNetwork
+from pybrain.datasets import SupervisedDataSet
+from pybrain.supervised.trainers import BackpropTrainer
+
 class cc:
 	def __init__(self):
 		self.p = 0.0
@@ -203,7 +208,6 @@ def testpybrain():
 	yE = list()
 	yU = list()
 	
-	from pybrain.tools.shortcuts import buildNetwork
 	perceptron = buildNetwork(100, 5, 3, bias=True)
 	
 	trainingProteins = []
@@ -218,13 +222,11 @@ def testpybrain():
 	for p in trainingProteins:
 		inputs_targets.extend(zip(p.inputss,p.targetss))
 		
-	from pybrain.datasets import SupervisedDataSet
 	
 	ds = SupervisedDataSet(100,3)
 	for inputs,targets in inputs_targets:
 		ds.addSample(inputs,(targets['H'],targets['E'], targets['U']))
 		
-	from pybrain.supervised.trainers import BackpropTrainer
 	trainer = BackpropTrainer(perceptron, ds)
 	
 	def test():
